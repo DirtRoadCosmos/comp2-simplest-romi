@@ -17,9 +17,10 @@ public class AutonomousTime extends SequentialCommandGroup {
    */
   public AutonomousTime(Drivetrain drivetrain) {
     addCommands(
-        new DriveTime(-0.6, 2.0, drivetrain),
-        new TurnTime(-0.5, 1.3, drivetrain),
-        new DriveTime(-0.6, 2.0, drivetrain),
-        new TurnTime(0.5, 1.3, drivetrain));
+        new DriveTime(.5, 35.0, drivetrain)
+    );
+        // new TurnTime(-0.5, 1.3, drivetrain),
+        // new DriveTime(-0.6, 2.0, drivetrain),
+        // new TurnTime(0.5, 1.3, drivetrain));
   }
 }

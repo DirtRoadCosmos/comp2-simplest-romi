@@ -20,8 +20,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
  * (input) or Red LED (output) DIO 3 - Yellow LED (output only)
  */
 public class OnBoardIO extends SubsystemBase {
-  private final DigitalInput m_buttonA = new DigitalInput(2);
-  private final DigitalOutput m_yellowLed = new DigitalOutput(3);
+  //private final DigitalInput m_buttonA = new DigitalInput(2);
+  //private final DigitalOutput m_yellowLed = new DigitalOutput(3);
 
   // DIO 1
   private DigitalInput m_buttonB;
@@ -35,8 +35,9 @@ public class OnBoardIO extends SubsystemBase {
   private double m_nextMessageTime;
 
 
-  AnalogInput inp = new AnalogInput(0);
-  
+  AnalogInput inpRight = new AnalogInput(0);
+  AnalogInput inpLeft = new AnalogInput(1);  
+  AnalogInput inpMiddle = new AnalogInput(2);
 
   public enum ChannelMode {
     INPUT,
@@ -50,23 +51,27 @@ public class OnBoardIO extends SubsystemBase {
    * @param dio2 Mode for DIO 2 (input = Button C, output = red LED)
    */
   public OnBoardIO(ChannelMode dio1, ChannelMode dio2) {
-    if (dio1 == ChannelMode.INPUT) {
-      m_buttonB = new DigitalInput(1);
-    } else {
-      m_greenLed = new DigitalOutput(1);
-    }
+    // if (dio1 == ChannelMode.INPUT) {
+    //   m_buttonB = new DigitalInput(1);
+    // } else {
+    //   m_greenLed = new DigitalOutput(1);
+    // }
 
-    if (dio2 == ChannelMode.INPUT) {
-      m_buttonC = new DigitalInput(2);
-    } else {
-      m_redLed = new DigitalOutput(2);
-    }
+    // if (dio2 == ChannelMode.INPUT) {
+    //   m_buttonC = new DigitalInput(2);
+    // } else {
+    //   m_redLed = new DigitalOutput(2);
+    // }
   }
+
+  public OnBoardIO() {}
+
+
 
   /** Gets if the A button is pressed. */
-  public boolean getButtonAPressed() {
-    return m_buttonA.get();
-  }
+  // public boolean getButtonAPressed() {
+  //   return m_buttonA.get();
+  // }
 
   /** Gets if the B button is pressed. */
   public boolean getButtonBPressed() {
@@ -123,13 +128,25 @@ public class OnBoardIO extends SubsystemBase {
   }
 
   /** Sets the yellow LED. */
-  public void setYellowLed(boolean value) {
-    m_yellowLed.set(value);
+  // public void setYellowLed(boolean value) {
+  //   m_yellowLed.set(value);
+  // }
+
+  public int getLeftValue() {
+    return inpLeft.getAverageValue();
+  }
+
+  public int getRightValue() {
+    return inpRight.getAverageValue();
+  }
+
+  public int getMiddleValue() {
+    return inpMiddle.getAverageValue();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println(inp.getAverageValue()); 
+
   }
 }
